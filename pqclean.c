@@ -1,6 +1,6 @@
 #include "falcon_api.h"
 #include "inner.h"
-#include "randombytes.h"
+#include <random.h>
 #include <stddef.h>
 #include <string.h>
 /*
@@ -56,7 +56,7 @@ crypto_sign_keypair(unsigned char *pk, unsigned char *sk) {
     /*
      * Generate key pair.
      */
-    randombytes(seed, sizeof seed);
+    random_bytes(seed, sizeof seed);
     inner_shake256_init(&rng);
     inner_shake256_inject(&rng, seed, sizeof seed);
     inner_shake256_flip(&rng);
@@ -176,7 +176,7 @@ do_sign(uint8_t *nonce, uint8_t *sigbuf, size_t *sigbuflen,
     /*
      * Create a random nonce (40 bytes).
      */
-    randombytes(nonce, NONCELEN);
+    random_bytes(nonce, NONCELEN);
 
     /*
      * Hash message nonce + message into a vector.
@@ -191,7 +191,7 @@ do_sign(uint8_t *nonce, uint8_t *sigbuf, size_t *sigbuflen,
     /*
      * Initialize a RNG.
      */
-    randombytes(seed, sizeof seed);
+    random_bytes(seed, sizeof seed);
     inner_shake256_init(&sc);
     inner_shake256_inject(&sc, seed, sizeof seed);
     inner_shake256_flip(&sc);
