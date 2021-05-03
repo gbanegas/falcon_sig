@@ -8,7 +8,7 @@
 #define CRYPTO_PUBLICKEYBYTES   897
 #define CRYPTO_BYTES            690
 
-#define CRYPTO_ALGNAME  "Falcon-512"
+#define CRYPTO_ALGNAME          "Falcon-512"
 
 /*
  * Generate a new key pair. Public key goes into pk[], private key in sk[].
